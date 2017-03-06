@@ -492,11 +492,11 @@ void vprint_info(const char* filename, const int line, const char* const format,
     char buffer[1024];
     vsprintf(buffer, format, args);
     #ifdef LOGGING
-      tctd_fputs("[ INFO ]\n", tctd_fp);
-      tctd_fprintf(tctd_fp,"FILE: %s\n",filename);
-      tctd_fprintf(tctd_fp,"LINE: %d\n",line);
-      tctd_fprintf(tctd_fp, buffer);
-      tctd_fprintf(tctd_fp, "\n");
+      fputs("[ INFO ]\n", tctd_fp);
+      fprintf(tctd_fp,"FILE: %s\n",filename);
+      fprintf(tctd_fp,"LINE: %d\n",line);
+      fprintf(tctd_fp, buffer);
+      fprintf(tctd_fp, "\n");
       fflush(tctd_fp);    
     #else
       puts("[ INFO ]\n");
@@ -519,11 +519,11 @@ void vprint_warning(const char* filename, const int line, const char* const form
     char buffer[1024];
     vsprintf(buffer, format, args);
     #ifdef LOGGING
-      tctd_fputs("[ WARNING ]\n", tctd_fp);
-      tctd_fprintf(tctd_fp,"FILE: %s\n",filename);
-      tctd_fprintf(tctd_fp,"LINE: %d\n",line);
-      tctd_fprintf(tctd_fp, buffer);
-      tctd_fprintf(tctd_fp, "\n");
+      fputs("[ WARNING ]\n", tctd_fp);
+      fprintf(tctd_fp,"FILE: %s\n",filename);
+      fprintf(tctd_fp,"LINE: %d\n",line);
+      fprintf(tctd_fp, buffer);
+      fprintf(tctd_fp, "\n");
       fflush(tctd_fp);
     #else
       puts("[ WARNING ]\n");
@@ -545,17 +545,17 @@ void vprint_error(const int line, const char* const format, va_list args) {
     char buffer[1024];
     vsprintf(buffer, format, args);
     #ifdef LOGGING
-      tctd_fputs("[ ERROR ]\n", tctd_fp);
-      tctd_fprintf(tctd_fp,"FILE: %s\n",filename);
-      tctd_fprintf(tctd_fp,"LINE: %d\n",line);
-      tctd_fprintf(tctd_fp, buffer);
-      tctd_fprintf(tctd_fp, "\n");
+      fputs("[ ERROR ]\n", tctd_fp);
+      fprintf(tctd_fp,"FILE: %s\n",filename);
+      fprintf(tctd_fp,"LINE: %d\n",line);
+      fprintf(tctd_fp, buffer);
+      fprintf(tctd_fp, "\n");
       fflush(tctd_fp);
     #else
-      tctd_fputs(stderr, "[ ERROR ]\n");
-      tctd_fprintf(stderr, "FILE: %s\n",filename);
-      tctd_fprintf(stderr, "LINE: %d\n", line);
-      tctd_fprintf(stderr, "%s\n", buffer);
+      fputs(stderr, "[ ERROR ]\n");
+      fprintf(stderr, "FILE: %s\n",filename);
+      fprintf(stderr, "LINE: %d\n", line);
+      fprintf(stderr, "%s\n", buffer);
       fflush(stderr);
    #endif
 }
@@ -571,19 +571,19 @@ void vprint_error_errno(const char* filename, const int line, const char* const 
     char buffer[1024];
     vsprintf(buffer, format, args);
     #ifdef LOGGING
-      tctd_fputs("[ ERROR ]\n", tctd_fp);
-      tctd_fprintf(tctd_fp,"FILE: %s\n",filename);
-      tctd_fprintf(tctd_fp,"LINE: %d\n",line);
-      tctd_fprintf(tctd_fp,"ERROR: %s------%d", strerror(errno), errno);
-      tctd_fprintf(tctd_fp, buffer);
-      tctd_fprintf(tctd_fp, "\n");
+      fputs("[ ERROR ]\n", tctd_fp);
+      fprintf(tctd_fp,"FILE: %s\n",filename);
+      fprintf(tctd_fp,"LINE: %d\n",line);
+      fprintf(tctd_fp,"ERROR: %s------%d", strerror(errno), errno);
+      fprintf(tctd_fp, buffer);
+      fprintf(tctd_fp, "\n");
       fflush(tctd_fp);
     #else
-      tctd_fputs(stderr, "[ ERROR ]\n");
-      tctd_fprintf(stderr, "FILE: %s\n",filename);
-      tctd_fprintf(stderr, "LINE: %d\n", line);
-      tctd_fprintf(stderr,"ERROR: %s------%d", strerror(errno), errno);
-      tctd_fprintf(stderr, "%s\n", buffer);
+      fputs(stderr, "[ ERROR ]\n");
+      fprintf(stderr, "FILE: %s\n",filename);
+      fprintf(stderr, "LINE: %d\n", line);
+      fprintf(stderr,"ERROR: %s------%d", strerror(errno), errno);
+      fprintf(stderr, "%s\n", buffer);
       fflush(stderr);    
     #endif 
 }
