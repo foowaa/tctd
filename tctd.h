@@ -387,10 +387,22 @@ typedef struct {
     time_t end;
 } bench;
 
-time_t getTime();
-void bench_start(bench* b);
-void bench_stop(bench* b);
-void bench_print_summary(bench* b);
+time_t getTime(){
+  time_t t;
+  time(&t);
+  return t;
+}
+void bench_start(bench* b){
+  b->start = getTime();
+}
+void bench_stop(bench* b){
+  b->end = getTime();
+}
+void bench_print_summary(bench *b) {
+  printf("\n Benchmarking...\n");
+    printf("-> %ld runs, time of duration is %lf seconds\n", b->R, difftime(b->end, b->start) );
+    printf("-> every run spends %.2f sec\n", (float) (difftime(b->end, b->start)/ b->R) );
+}
 
 #define TCTD_INIT_BENCH(B, RUN) \
         bench B; \
@@ -602,13 +614,6 @@ void vprint_error_errno(const char* filename, const int line, const char* const 
 #define tctd_free_log(ptr) __tctd_free_log(ptr, __FILE__, __LINE__)
 #define tctd_calloc_log(type, size) _tctd_calloc_log(size, sizeof(type), __FILE__, __LINE__)
 
-void* _tctd_malloc(size_t size); 
-void _tctd_free(void* ptr);
-void* _tctd_calloc(size_t size);
-void* _tctd_malloc_log(size_t size, const char* funname, const char* filename, int line);
-void _tctd_free_log(void* ptr, const char* funname, const char* filename, int line);
-void* _tctd_calloc_log(size_t size, const char* funname, const char* filename, int line);
-
 
 //http://blog.csdn.net/hackbuteer1/article/details/6789164
 //http://www.cnblogs.com/QG-whz/p/5140930.html
@@ -677,11 +682,8 @@ void* _tctd_calloc_log(size_t n, size_t size, const char* filename, const int li
 }
 /*** Random number generation ***/
 
-void tctd_rand_seed(unsigned int seed);
-int tctd_rand_int_range(int min, int max);
-
 void tctd_rand_seed(unsigned int seed){
-    if (seed != NULL)
+    if (seed != 0)
         srand(seed);
     else
         srand(time(0));
