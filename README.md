@@ -1,5 +1,8 @@
 # tctd unit test & debug framework
 
+[![GitHub license](http://7xs6jl.com1.z0.glb.clouddn.com/svgapache2.svg)](./LICENSE)
+[![Build Status](https://travis-ci.org/foowaa/tctd.svg?branch=master)](https://travis-ci.org/foowaa/tctd)
+
 ## Unit Testing
 The basic architecture of the framework on unit testing is [https://cmocka.org](https://cmocka.org "Cmocka"), but I always feel that it is complex to use. Therefore, I write the framework and the users needn't any compiling, it's a single header file and a source file. The weakness is the implemention and interface are fused, but plz accord to my document. 
 
