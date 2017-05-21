@@ -1,17 +1,25 @@
-# tctd unit test and debug framework
+# tctd unit test & debug framework
 
 ## Unit Testing
-The basic architecture of the framework on unit testing is [https://cmocka.org](https://cmocka.org "Cmocka"), but I always feel that it is complex though it is uncomlicated. Therefore, I write the framework and the users needn't any compiling, it's a single header file. The weakness is the implemention and interface are fused, but plz accord to my document. Firstly, define TCTD\_UTEST which setup the unit testing.
+The basic architecture of the framework on unit testing is [https://cmocka.org](https://cmocka.org "Cmocka"), but I always feel that it is complex to use. Therefore, I write the framework and the users needn't any compiling, it's a single header file and a source file. The weakness is the implemention and interface are fused, but plz accord to my document. 
 
-The interfaces of unit testing are: test\_func, TCTD\_UTEST, tctd\_run\_utests and assertions.
+The interfaces of unit testing are: Test, tctd\_utest, TCTDUTest, tctd\_run\_utests and assertions.
 
-1. test\_func is wrapper of test function. The agreement is: void test\_func(). Please use the wrapper.
+1. `Test` is the protocol for test instance. i.e.
+	
+	Test testFunc1(){...}
 
-2. tctd\_utest is a macro which wraps the test function. tctd\_utest(test_func1)
+2. `tctd\_utest` is wrapper of `Test` function. i.e.
 
-3. TCTDUTest is a struct containing tctd_utest. TCTDUTest utest = {tctd_utest(f1), tctd_utest(f2)};
+	tctd_utest(testFunc1) 
 
-4. tctd\_run\_utests is a macro running the test functions. tctd\_run\_utests(utest);
+3. Use type `TCTDUTest` to make test groups.
+
+	TCTDUTest testGropu[2] = {tctd_utest(testFunc`), tctd_utest(testFunc2)}
+
+4. tctd\_run\_utests is a macro running the test functions. tctd\_run\_utests(utest)
+
+	tctd_run_utest(testGroup)
 
 5. The assertions use [https://nemequ.github.io/munit/#assertions](https://nemequ.github.io/munit/#assertions "munit").
 
@@ -20,8 +28,12 @@ The interfaces of unit testing are: test\_func, TCTD\_UTEST, tctd\_run\_utests a
 The modern IDEs (visual studio, eclipse,...) have good debugging tools, but in practice, step through is an important technique for deugging. In the complex code, coders often want to watch the variables value. The debugging offers the convenient temporary variables declaration.
 
 1. #define TCTD_DEBUG
-2. You can use DEBUG macro in the debuged functions. DEBUG int debugedFunc()
-3. temp_vars(name, type, number) is the main macro (1<=number<=15). temp_vars(temp1, int*, 3) will declare int* temp1_1, int* temp1_2, int*temp1_3.
+2. You can use DEBUG macro in the debuged functions.
+
+	DEBUG temp_vars(t, float*, 3) 
+	//This will declare 3 float* temp var.: t_1, t_2, t_3
+
+3. The biggest number is 15.
 
 ## Utilities
 The utilities serve both unit testing, debugging and the users. There are 4 parts:
@@ -48,6 +60,7 @@ Wrap the malloc and free which make them safe and friendly. Altogether, tctd can
 3.  tctd_malloc_log(type, size)
 4.  tctd_free_log(ptr)
 
+These functions also are convenient for memory leak inspection.
 ### Benchmarking
 2 types of interfaces are provided: macro and fucntions.
 
@@ -67,4 +80,8 @@ Wrap the malloc and free which make them safe and friendly. Altogether, tctd can
 
 
 ### Random number generation.
-tctd\_rand\_seed(unsigned int seed), tctd_rand_int_range(int min, int max) will set seed and rand integer generating.
+tctd_rand_seed() will set random seed.
+
+tctd_rand_int_range_*() generate integers in different intervals.
+
+tctd_urand() generates uniform distribution in [a,b].
