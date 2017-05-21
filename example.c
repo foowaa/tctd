@@ -4,7 +4,7 @@ A simple test and example
 
 #define TCTD_UTEST
 #define TCTD_DEBUG
-#include "tctd1.h"
+#include "tctd.h"
 
 //A function
 int ceilInt(int a, int b){
