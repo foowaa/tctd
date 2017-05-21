@@ -9,4 +9,4 @@ install:
 - sudo apt-get install -qq gcc
 - export CC="gcc"
 
-script: "bash -c ./build.sh"
+script: "bash ./build.sh"
