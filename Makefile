@@ -1,5 +1,5 @@
 all:
-	$(CC) -Wall -Wextra example.cpp -o example
+	$(CC) -Wall -Wextra tctd.h tctd.c example.c -o example
 
 test:
 	 ./example || exit 1
