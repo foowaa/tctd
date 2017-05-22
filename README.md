@@ -12,7 +12,7 @@ The interfaces of unit testing are: Test, tctd\_utest, TCTDUTest, tctd\_run\_ute
 	
 	Test testFunc1(){...}
 
-2. `tctd\_utest` is wrapper of `Test` function. i.e.
+2. `tctd_utest` is wrapper of `Test` function. i.e.
 
 	tctd_utest(testFunc1) 
 
@@ -20,7 +20,7 @@ The interfaces of unit testing are: Test, tctd\_utest, TCTDUTest, tctd\_run\_ute
 
 	TCTDUTest testGropu[2] = {tctd_utest(testFunc`), tctd_utest(testFunc2)}
 
-4. `tctd\_run\_utests` is a macro running the test functions. tctd\_run\_utests(utest)
+4. `tctd_run_utests` is a macro running the test functions. tctd\_run\_utests(utest)
 
 	tctd_run_utest(testGroup)
 
