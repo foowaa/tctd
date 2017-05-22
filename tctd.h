@@ -6,7 +6,7 @@ Unit tests with simple assertions inspired from munit.
 Safe memory control, random variables generation utilities.
 A simple strategy for inspect memory leak in small projects.
 Bencmarking inspired from minunit.
-Debug tool: temporal variables declaration that convenient for step through.
+Debug tool: temporary variables declaration that convenient for step through.
 
 Author: cltian
 Email: tianchunlin123@gmail.com
@@ -348,7 +348,7 @@ void _tctd_run_utests(char* group_name, TCTDUTest group_tests[], size_t num_elem
 #endif // TCTD_UTEST
 
 
-/** \brief Debug Mode. The main tool is define temporal var. for step through.
+/** \brief Debug Mode. The main tool is define temporary var. for step through.
  *
  */
 #ifdef TCTD_DEBUG

@@ -20,7 +20,7 @@ The interfaces of unit testing are: Test, tctd\_utest, TCTDUTest, tctd\_run\_ute
 
 	TCTDUTest testGropu[2] = {tctd_utest(testFunc`), tctd_utest(testFunc2)}
 
-4. tctd\_run\_utests is a macro running the test functions. tctd\_run\_utests(utest)
+4. `tctd\_run\_utests` is a macro running the test functions. tctd\_run\_utests(utest)
 
 	tctd_run_utest(testGroup)
 
@@ -48,12 +48,6 @@ The utilities serve both unit testing, debugging and the users. There are 4 part
 
 ### Output
 A global variables tctd_file is used here. FILE* tctd_file is the logging file used in the output. If define LOGGING, you shoule provide tctd_file to write. And file control is given to the users, open and close. If not define LOGGING, stdout and stderr are used.
-
-1. TCTDLogLevel is the levels of logging: LOG_INFO, LOG_WARNING, LOG_ERROR, LOG_ERROR_ERRNO
-2. tctd_print_std(LogLevel, format, message)
-3. tctd_print_simple(LogLevel,  message)
-4. tctd_error(msg), tctd_info(msg), tctd_warning(msg), tctd_error_errno(msg)
-5. _errno will use <errno.h> to get errno.
 
 ### Memory control
 Wrap the malloc and free which make them safe and friendly. Altogether, tctd can write the log of usage of malloc and free to tctd_file that is checked memory leak.
