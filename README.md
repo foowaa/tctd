@@ -1,6 +1,5 @@
 # tctd unit test & debug framework
 
-[![GitHub license](http://7xs6jl.com1.z0.glb.clouddn.com/svgapache2.svg)](./LICENSE)
 [![Build Status](https://travis-ci.org/foowaa/tctd.svg?branch=master)](https://travis-ci.org/foowaa/tctd)
 
 ## Unit Testing
